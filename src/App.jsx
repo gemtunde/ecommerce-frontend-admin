@@ -23,13 +23,13 @@ function App() {
         <>
           <div className="app-content">
             <Sidebar setToken={setToken} />
-          </div>
-          <div className="page-content">
-            <Routes>
-              <Route path="/add" element={<Add />} />
-              <Route path="/list" element={<List />} />
-              <Route path="/orders" element={<Orders />} />
-            </Routes>
+            <div className="page-content">
+              <Routes>
+                <Route path="/add" element={<Add />} />
+                <Route path="/list" element={<List />} />
+                <Route path="/orders" element={<Orders />} />
+              </Routes>
+            </div>
           </div>
         </>
       )}
