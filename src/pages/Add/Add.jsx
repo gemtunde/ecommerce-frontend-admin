@@ -5,27 +5,36 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { backendUrl } from "../../App";
 
-const Add = () => {
+const Add = ({ token }) => {
   const [sizes, setSizes] = React.useState([]);
-  const [image1, setImage1] = React.useState("");
-  const [image2, setImage2] = React.useState("");
-  const [image3, setImage3] = React.useState("");
-  const [image4, setImage4] = React.useState("");
+  const [image1, setImage1] = React.useState(null);
+  const [image2, setImage2] = React.useState(null);
+  const [image3, setImage3] = React.useState(null);
+  const [image4, setImage4] = React.useState(null);
+  //   const [image1, setImage1] = React.useState(false);
+  //   const [image2, setImage2] = React.useState(false);
+  //   const [image3, setImage3] = React.useState(false);
+  //   const [image4, setImage4] = React.useState(false);
 
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [category, setCategory] = React.useState("Men");
   const [price, setPrice] = React.useState("");
   const [bestseller, setBestseller] = React.useState(false);
+  console.log("image===>>>", image1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      image1 && formData.append("image1", image1 ? image1 : null);
-      image2 && formData.append("image2", image2 ? image2 : null);
-      image3 && formData.append("image3", image3 ? image3 : null);
-      image4 && formData.append("image4", image4 ? image4 : null);
+      if (image1) formData.append("image1", image1);
+      if (image2) formData.append("image2", image2);
+      if (image3) formData.append("image3", image3);
+      if (image4) formData.append("image4", image4);
+      //   image1 && formData.append("image1", image1 ? image1 : null);
+      //   image2 && formData.append("image2", image2 ? image2 : null);
+      //   image3 && formData.append("image3", image3 ? image3 : null);
+      //   image4 && formData.append("image4", image4 ? image4 : null);
 
       formData.append("name", name);
       formData.append("description", description);
@@ -33,23 +42,20 @@ const Add = () => {
       formData.append("price", price);
       formData.append("sizes", JSON.stringify(sizes));
       formData.append("bestseller", bestseller);
-
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]); // This should log all form data key-value pairs
+      }
       const response = await axios.post(
-        `${backendUrl}/api/product/add`,
+        backendUrl + "/api/product/add",
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            // Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { token, "Content-Type": "multipart/form-data" } }
       );
       if (response.data.success) {
         toast.success(response.data.message);
-        setImage1("");
-        setImage2("");
-        setImage3("");
-        setImage4("");
+        setImage1(false);
+        setImage2(false);
+        setImage3(false);
+        setImage4(false);
         setName("");
         setDescription("");
         setPrice("");
