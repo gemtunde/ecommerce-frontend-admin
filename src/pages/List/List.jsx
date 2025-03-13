@@ -6,6 +6,7 @@ import { MdRemove } from "react-icons/md";
 
 const List = ({ token }) => {
   const [productList, setProductList] = React.useState([]);
+  const [userList, setUserList] = React.useState("");
 
   const fetchProductList = async () => {
     try {
