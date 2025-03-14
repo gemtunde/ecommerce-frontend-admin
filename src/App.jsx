@@ -27,8 +27,8 @@ function App() {
             <div className="page-content">
               <Routes>
                 <Route path="/add" element={<Add token={token} />} />
-                <Route path="/list" element={<List />} />
-                <Route path="/orders" element={<Orders />} />
+                <Route path="/list" element={<List token={token} />} />
+                <Route path="/orders" element={<Orders token={token} />} />
               </Routes>
             </div>
           </div>

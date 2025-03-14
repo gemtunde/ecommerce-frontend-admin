@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { backendUrl, currency } from "../../App";
 import { toast } from "react-toastify";
-import { MdRemove } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 
 const List = ({ token }) => {
   const [productList, setProductList] = React.useState([]);
-  const [userList, setUserList] = React.useState("");
+  // const [userList, setUserList] = React.useState("");
 
   const fetchProductList = async () => {
     try {
@@ -15,6 +15,26 @@ const List = ({ token }) => {
       });
       if (response.data.success) {
         setProductList(response.data.products);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  const removeProduct = async (_id) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "/api/product/remove",
+        { _id },
+        {
+          headers: { token },
+        }
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+        await fetchProductList();
       } else {
         toast.error(response.data.message);
       }
@@ -47,7 +67,10 @@ const List = ({ token }) => {
               {currency}
               {product.price}
             </p>
-            <MdRemove className="product-action" />
+            <MdDeleteForever
+              className="product-action"
+              onClick={() => removeProduct(product._id)}
+            />
           </div>
         ))}
       </div>
