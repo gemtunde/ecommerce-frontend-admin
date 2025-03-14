@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { backendUrl, currency } from "../../App";
 import { toast } from "react-toastify";
 import { MdDeleteForever } from "react-icons/md";
+import "./List.css";
 
 const List = ({ token }) => {
   const [productList, setProductList] = React.useState([]);
