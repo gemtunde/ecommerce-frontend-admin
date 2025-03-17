@@ -1,12 +1,3 @@
-# React + Vite
+At the Frontend,  a navigation bar, hero section, display product to users, filter products by categories, view product details, add product to cart, create login/signup page with secure authentication , add sizes to products etc.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+At the admin panel, i will login for admin, admin can add products to frontend and send to database, view all product list, receive orders sent from frontend, update order status and Login with authentication for secure access.
